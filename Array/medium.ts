@@ -196,55 +196,55 @@
 
 // console.log(threeSumBrute([-1, 0, 1, 2, -1, -4])); //* Output: [[-1,-1,2],[-1,0,1]]
 
-//! Q5 4Sum
-// //? https://leetcode.com/problems/4sum/
-// //* Input: nums = [1,0,-1,0,-2,2], target = 0
-// //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-// //* Explanation: All unique quadruplets that sum to target.
+// //! Q5 4Sum
+// // //? https://leetcode.com/problems/4sum/
+// // //* Input: nums = [1,0,-1,0,-2,2], target = 0
+// // //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+// // //* Explanation: All unique quadruplets that sum to target.
 
-// //! Key Observation:
-// //! - Find all unique quadruplets (i, j, k, l) such that nums[i] + nums[j] + nums[k] + nums[l] == target.
-// //! - Sorting + two-pointer technique makes it efficient (extension of 3Sum).
-// //! - Complexity: O(n³) (optimal for this problem).
-// //!
-// //! Asked In: Amazon, Google, Meta, Microsoft, Adobe, Netflix
+// // //! Key Observation:
+// // //! - Find all unique quadruplets (i, j, k, l) such that nums[i] + nums[j] + nums[k] + nums[l] == target.
+// // //! - Sorting + two-pointer technique makes it efficient (extension of 3Sum).
+// // //! - Complexity: O(n³) (optimal for this problem).
+// // //!
+// // //! Asked In: Amazon, Google, Meta, Microsoft, Adobe, Netflix
 
-const fourSumBrute = (nums: number[], target: number): number[][] => {
-  // !sort the entire array
-  nums = nums.sort((a, b) => a - b);
+// const fourSumBrute = (nums: number[], target: number): number[][] => {
+//   // !sort the entire array
+//   nums = nums.sort((a, b) => a - b);
 
-  const n = nums.length;
-  const ans: number[][] = [];
+//   const n = nums.length;
+//   const ans: number[][] = [];
 
-  for (let i = 0; i < n - 1; i++) {
-    if (i > 0 && nums[i] === nums[i - 1]) continue;
+//   for (let i = 0; i < n - 1; i++) {
+//     if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    for (let j = i + 1; j < n - 1; j++) {
-      if (j > 0 && nums[j] === nums[j - 1]) continue;
-      let k = j + 1;
-      let l = n - 1;
+//     for (let j = i + 1; j < n - 1; j++) {
+//       if (j > 0 && nums[j] === nums[j - 1]) continue;
+//       let k = j + 1;
+//       let l = n - 1;
 
-      while (nums[k]! < nums[l]!) {
-        const sum: number = nums[i]! + nums[j]! + nums[k]! + nums[l]!;
+//       while (nums[k]! < nums[l]!) {
+//         const sum: number = nums[i]! + nums[j]! + nums[k]! + nums[l]!;
 
-        if (sum === target) {
-          ans.push([nums[i]!, nums[j]!, nums[k]!, nums[l]!]);
+//         if (sum === target) {
+//           ans.push([nums[i]!, nums[j]!, nums[k]!, nums[l]!]);
 
-          while (nums[k]! < nums[l]! && nums[k] === nums[k - 1]) k++;
-          while (nums[k]! < nums[l]! && nums[l] === nums[l + 1]) l--;
+//           while (nums[k]! < nums[l]! && nums[k] === nums[k - 1]) k++;
+//           while (nums[k]! < nums[l]! && nums[l] === nums[l + 1]) l--;
 
-          k++;
-          l--;
-        } else if (sum > target) {
-          l--;
-        } else {
-          k++;
-        }
-      }
-    }
-  }
+//           k++;
+//           l--;
+//         } else if (sum > target) {
+//           l--;
+//         } else {
+//           k++;
+//         }
+//       }
+//     }
+//   }
 
-  return ans;
-};
+//   return ans;
+// };
 
-console.log(fourSumBrute([1, 0, -1, 0, -2, 2], 0)); //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+// console.log(fourSumBrute([1, 0, -1, 0, -2, 2], 0)); //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]

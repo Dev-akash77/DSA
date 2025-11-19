@@ -8,8 +8,8 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
-    "target": "ES2022",
-    "types": [], 
+    "target": "es2022",
+    "types": [],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
