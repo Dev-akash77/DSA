@@ -111,4 +111,54 @@ const isPalindrome = (s) => {
     return true;
 };
 // console.log(isPalindrome("race a car")); // false
+//! Q3. Sort Colors (0, 1, 2)
+//? https://leetcode.com/problems/sort-colors/
+//* Input:  nums = [2,0,2,1,1,0]
+//* Output: [0,0,1,1,2,2]
+//* Meaning: Sort array containing only 0, 1, 2 (in-place, one pass).
+//! Intuition:
+//! We use the Dutch National Flag algorithm.
+//! Maintain three regions using 3 pointers:
+//!   - low  → where next 0 should go
+//!   - mid  → current index scanning
+//!   - high → where next 2 should go
+//! If nums[mid] == 0 → swap with low → expand 0s region
+//! If nums[mid] == 1 → mid++ (1 stays in middle)
+//! If nums[mid] == 2 → swap with high → shrink 2s region
+//! Algorithm (Three-Pointer):
+//! 1. Initialize: low = 0, mid = 0, high = n-1
+//! 2. While mid <= high:
+//!       - If nums[mid] == 0:
+//!             swap(nums[low], nums[mid])
+//!             low++, mid++
+//!       - Else If nums[mid] == 1:
+//!             mid++
+//!       - Else (nums[mid] == 2):
+//!             swap(nums[mid], nums[high])
+//!             high--
+//! 3. Array will be sorted in-place.
+//! Time Complexity: O(n)
+//! Space Complexity: O(1)
+//! Asked In: Google, Amazon, Microsoft, Facebook
+const sortColors = (nums) => {
+    let low = 0;
+    let mid = 0;
+    let high = nums.length - 1;
+    while (mid <= high) {
+        if (nums[mid] === 0) {
+            [nums[mid], nums[low]] = [nums[low], nums[mid]];
+            mid++;
+            low++;
+        }
+        else if (nums[mid] === 1) {
+            mid++;
+        }
+        else {
+            [nums[mid], nums[high]] = [nums[high], nums[mid]];
+            high--;
+        }
+    }
+    return nums;
+};
+// console.log(sortColors([2, 0, 2, 1, 1, 0])); // [0,0,1,1,2,2]
 //# sourceMappingURL=index.js.map
