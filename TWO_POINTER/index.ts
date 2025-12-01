@@ -195,3 +195,52 @@ const sortColors = (nums: number[]): number[] => {
 };
 
 // console.log(sortColors([2, 0, 2, 1, 1, 0])); // [0,0,1,1,2,2]
+
+//! Q4. Move All Zeroes to the End
+//? https://leetcode.com/problems/move-zeroes/
+
+//* Input:  nums = [0,1,0,3,12]
+//* Output: [1,3,12,0,0]
+//* Meaning: Move all zeros to the end, maintain the order of non-zero elements.
+
+//! Intuition:
+//! Use the Two-Pointer technique (slow & fast).
+//! - fast pointer → scans the array
+//! - slow pointer → position to place next non-zero
+//! When nums[fast] != 0 → copy value to nums[slow], then slow++
+//! After placing all non-zero elements in front, fill remaining positions with 0.
+//!
+//! This ensures:
+//! - all non-zero elements stay in original order
+//! - zeros go to the end
+//! - done in-place, O(1) extra space
+
+//! Algorithm (Most Optimal):
+//! 1. Initialize slow = 0
+//! 2. Loop fast from 0 to n-1:
+//!       - If nums[fast] != 0:
+//!             nums[slow] = nums[fast]
+//!             slow++
+//! 3. After loop, fill nums[slow…end] = 0
+
+//! Time Complexity: O(n)
+//! Space Complexity: O(1)
+//! Pattern: Two Pointers (Slow–Fast), Stable Compaction
+//! Asked In: Google, Amazon, Microsoft, Adobe, Walmart, Infosys, TCS Digital
+
+const moveZeroes = (nums: number[]): number[] => {
+  const n = nums.length;
+
+  let j = 0;
+
+  for (let i = 0; i < n; i++) {
+    if (nums[i] != 0) {
+      nums[j++] = nums[i]!;
+    }
+  }
+
+  while(j<n) nums[j++] = 0;
+
+  return nums;
+};
+console.log(moveZeroes([0, 1, 0, 3, 12])); // [1,3,12,0,0]
