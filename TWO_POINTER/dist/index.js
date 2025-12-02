@@ -68,7 +68,7 @@ const maxArea = (nums) => {
     return maxWater;
 };
 // console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])); // 49
-//! Q: Valid Palindrome
+//! Q3: Valid Palindrome
 //? https://leetcode.com/problems/valid-palindrome/
 //* Input: "A man, a plan, a canal: Panama"
 //* Output: true
@@ -111,7 +111,7 @@ const isPalindrome = (s) => {
     return true;
 };
 // console.log(isPalindrome("race a car")); // false
-//! Q3. Sort Colors (0, 1, 2)
+//! Q4. Sort Colors (0, 1, 2)
 //? https://leetcode.com/problems/sort-colors/
 //* Input:  nums = [2,0,2,1,1,0]
 //* Output: [0,0,1,1,2,2]
@@ -161,7 +161,7 @@ const sortColors = (nums) => {
     return nums;
 };
 // console.log(sortColors([2, 0, 2, 1, 1, 0])); // [0,0,1,1,2,2]
-//! Q4. Move All Zeroes to the End
+//! Q5. Move All Zeroes to the End
 //? https://leetcode.com/problems/move-zeroes/
 //* Input:  nums = [0,1,0,3,12]
 //* Output: [1,3,12,0,0]
@@ -200,5 +200,52 @@ const moveZeroes = (nums) => {
         nums[j++] = 0;
     return nums;
 };
-console.log(moveZeroes([0, 1, 0, 3, 12])); // [1,3,12,0,0]
+// console.log(moveZeroes([0, 1, 0, 3, 12])); // [1,3,12,0,0]
+//! Q4. Trapping Rain Water
+//? https://leetcode.com/problems/trapping-rain-water/
+//* Input:  [4,2,0,3,2,5]
+//* Output: 9
+//! Intuition:
+//! Two pointers + running leftMax/rightMax.
+//! Water depends on the smaller side.
+//! Add (maxSide - height) whenever height is smaller.
+//! Algorithm:
+//! 1. left=0, right=n-1, leftMax=0, rightMax=0, ans=0
+//! 2. While left < right:
+//!       - If height[left] < height[right]:
+//!             leftMax = max(leftMax, height[left])
+//!             ans += leftMax - height[left]
+//!             left++
+//!         Else:
+//!             rightMax = max(rightMax, height[right])
+//!             ans += rightMax - height[right]
+//!             right--
+//! 3. Return ans
+//! TC: O(n)
+//! SC: O(1)
+const trap = (height) => {
+    let ans = 0;
+    const n = height.length;
+    //! prefix
+    const left = Array(n);
+    //! suffix
+    const right = Array(n);
+    // ! check all left max 
+    left[0] = height[0];
+    for (let i = 1; i < n; i++) {
+        left[i] = Math.max(left[i - 1], height[i]);
+    }
+    // ! check all right max 
+    right[n - 1] = height[n - 1];
+    for (let i = n - 2; i >= 0; i--) {
+        right[i] = Math.max(right[i + 1], height[i]);
+    }
+    for (let i = 0; i < n; i++) {
+        let minh = Math.min(left[i], right[i]);
+        ans += minh - height[i];
+    }
+    return ans;
+};
+console.log(trap([4, 2, 0, 3, 2, 5])); // 9
+// trap([4, 2, 0, 3, 2, 5]); // 9
 //# sourceMappingURL=index.js.map
