@@ -245,7 +245,7 @@ const moveZeroes = (nums: number[]): number[] => {
 };
 // console.log(moveZeroes([0, 1, 0, 3, 12])); // [1,3,12,0,0]
 
-//! Q4. Trapping Rain Water
+//! Q6. Trapping Rain Water
 //? https://leetcode.com/problems/trapping-rain-water/
 
 //* Input:  [4,2,0,3,2,5]
@@ -281,35 +281,80 @@ const trap = (height: number[]): number => {
   //! suffix
   const right = Array(n);
 
-
-  // ! check all left max 
+  // ! check all left max
   left[0] = height[0];
 
   for (let i = 1; i < n; i++) {
-    left[i] = Math.max(left[i-1],height[i]!);
+    left[i] = Math.max(left[i - 1], height[i]!);
   }
 
+  // ! check all right max
+  right[n - 1] = height[n - 1];
 
-
-  // ! check all right max 
-  right[n-1] = height[n-1];
-
-  for (let i = n-2; i >= 0; i--) {
-    right[i] = Math.max(right[i+1],height[i]!);
+  for (let i = n - 2; i >= 0; i--) {
+    right[i] = Math.max(right[i + 1], height[i]!);
   }
 
-    for (let i = 0; i < n ; i++) {
-        let minh = Math.min(left[i], right[i]);
-        ans+= minh - height[i]!;
-    }
-
-    
-  
-  
-
+  for (let i = 0; i < n; i++) {
+    let minh = Math.min(left[i], right[i]);
+    ans += minh - height[i]!;
+  }
 
   return ans;
 };
 
-console.log(trap([4,2,0,3,2,5])); // 9
+// console.log(trap([4,2,0,3,2,5])); // 9
 // trap([4, 2, 0, 3, 2, 5]); // 9
+
+//! Q7. Maximum Subarray Sum Without Repeating Elements
+//? https://leetcode.com/problems/maximum-erasure-value/
+
+//* Input: nums = [4,2,4,5,6]
+//* Output: 17  → subarray [2,4,5,6]
+
+//! Intuition:
+//! Use sliding window.
+//! Window must contain UNIQUE elements.
+//! left/right pointers + Set + running sum.
+
+//! Algorithm:
+//! 1. left = 0, sum = 0, maxSum = 0, set = new Set()
+//! 2. For right from 0 → n-1:
+//!       - While duplicate found:
+//!             remove nums[left] from set
+//!             sum -= nums[left]
+//!             left++
+//!       - Add nums[right] to set & sum
+//!       - maxSum = max(maxSum, sum)
+//! 3. Return maxSum
+
+//! Time: O(n)
+//! Space: O(n)
+
+function maximumUniqueSubarray(nums: number[]): number {
+  let maxSum = 0;
+  const n = nums.length;
+
+  for (let i = 0; i < n; i++) {
+    let sum = 0;
+    const set = new Set<number>();
+    for (let j = i; j < n; j++) {
+    
+      if(set.has(nums[j]!)) break;
+
+      set.add(nums[j]!);
+
+      sum+=nums[j]!;
+      maxSum = Math.max(maxSum,sum);
+
+    }
+
+  }
+  return maxSum;
+}
+
+const nums = [4, 2, 4, 5, 6];
+// console.log(maximumUniqueSubarray(nums));
+// maximumUniqueSubarray(nums);
+// Output: 17
+// Unique subarray: [2, 4, 5, 6]
