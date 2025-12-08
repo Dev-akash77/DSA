@@ -334,27 +334,31 @@ const trap = (height: number[]): number => {
 function maximumUniqueSubarray(nums: number[]): number {
   let maxSum = 0;
   const n = nums.length;
+  const map = new Map<number, number>();
+  let l = 0;
+  let sum = 0;
 
-  for (let i = 0; i < n; i++) {
-    let sum = 0;
-    const set = new Set<number>();
-    for (let j = i; j < n; j++) {
-    
-      if(set.has(nums[j]!)) break;
+  for (let r = 0; r < n; r++) {
+    const x = nums[r]!;
 
-      set.add(nums[j]!);
+    if (map.has(x) && map.get(x)! >= l) {
+      let newL = map.get(x)! + 1;
 
-      sum+=nums[j]!;
-      maxSum = Math.max(maxSum,sum);
+      for (let i = l; i < newL; i++) {
+        sum -= nums[i]!;
+      }
 
+      l = newL;
     }
-
+    sum +=x;
+    map.set(x, r)!;
+    maxSum = Math.max(sum, maxSum);
   }
   return maxSum;
 }
 
 const nums = [4, 2, 4, 5, 6];
-// console.log(maximumUniqueSubarray(nums));
+console.log(maximumUniqueSubarray(nums));
 // maximumUniqueSubarray(nums);
 // Output: 17
 // Unique subarray: [2, 4, 5, 6]
