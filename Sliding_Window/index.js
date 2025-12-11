@@ -45,17 +45,17 @@ function lengthOfLongestSubstring(s) {
   let max = 0;
   let i = 0;
   let has = new Map();
-  let sum = 0;
+  let subArray = 0;
 
   for (let r = 0; r < n; r++) {
-    if (has.has(s[r])&& has.get(s[r]) >= i) {
+    if (has.has(s[r]) && has.get(s[r]) >= i) {
       i = has.get(s[r]) + 1;
-      sum = r - i + 1;
+      subArray = r - i + 1;
     }
 
-    sum = r - i + 1;
+    subArray = r - i + 1;
     has.set(s[r], r);
-    max = Math.max(sum, max);
+    max = Math.max(subArray, max);
   }
 
   console.log(max);
@@ -64,8 +64,78 @@ function lengthOfLongestSubstring(s) {
 }
 
 // !--------------------------------------------------------------
-// TEST RUN
+//? TEST RUN
 
 // console.log(lengthOfLongestSubstring("abcabcbb")); // 3
 // console.log(lengthOfLongestSubstring("bbbbb"));    // 1
 // console.log(lengthOfLongestSubstring("pwwkew"));   // 3
+
+/**
+ *! 2 | Minimum Size Subarray SubArray
+ ** LeetCode: https://leetcode.com/problems/minimum-size-subarray-subArray/
+ ** GFG: https://www.geeksforgeeks.org/minimum-length-subarray-subArray-greater-given-value/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Two Pointers)
+ *
+ *? PATTERN:
+ *? Variable-size sliding window
+ *? Expand until subArray ≥ target → shrink from left to minimize window
+ *
+ *! ALGO NAME:
+ *! Two Pointers + Sliding Window (Optimal)
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(1)
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Microsoft, Meta, Apple, Oracle,
+ *! Walmart Labs, Bloomberg, Adobe
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5) — Very important variable-size window question
+ *
+ * --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input: target = 7, nums = [2,3,1,2,4,3]
+ ** Output: 2
+ ** Explanation: Subarray [4,3] has the smallest length = 2
+ *
+ ** Input: target = 4, nums = [1,4,4]
+ ** Output: 1
+ ** Explanation: [4] alone is enough
+ *
+ ** Input: target = 11, nums = [1,1,1,1,1,1,1]
+ ** Output: 0
+ ** Explanation: No subarray meets the target
+ *
+ *? --------------------------------------------------------------
+ */
+
+function minSubArrayLen(target, nums) {
+  const n = nums.length;
+  let min = Infinity;
+  let left = 0;
+  let sum = 0;
+
+  for (let right = 0; right < n; right++) {
+    sum+=nums[right];
+
+    while(target<=sum){
+      min = Math.min(min,right-left+1);
+      sum-=nums[left];
+      left++
+    }
+
+  }
+  return min===Infinity?0:min;
+  
+}
+
+//? TEST RUN
+
+// console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3])); // Output: 2  -> [4,3]
+// console.log(minSubArrayLen(4, [1, 4, 4])); // Output: 1  -> [4]
+// console.log(minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1])); // Output: 0  -> No valid subarray
