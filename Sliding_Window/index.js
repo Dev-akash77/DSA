@@ -139,3 +139,60 @@ function minSubArrayLen(target, nums) {
 // console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3])); // Output: 2  -> [4,3]
 // console.log(minSubArrayLen(4, [1, 4, 4])); // Output: 1  -> [4]
 // console.log(minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1])); // Output: 0  -> No valid subarray
+
+/**
+ *! 3 | Maximum Subarray Sum of Size K
+ ** LeetCode: https://leetcode.com/problems/maximum-average-subarray-i/
+ ** GFG: https://www.geeksforgeeks.org/find-maximum-minimum-sum-subarray-size-k/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Fixed Size)
+ *
+ *? PATTERN:
+ *? Fixed-size sliding window
+ *? Add next element → remove left element → track max sum
+ *
+ *! ALGO NAME:
+ *! Fixed Window Sliding Technique
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(1)
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Microsoft, Meta, Apple,
+ *! Adobe, Goldman Sachs, Walmart Labs
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5) — Foundation of Sliding Window
+ *
+ * --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input: nums = [2,1,5,1,3,2], k = 3
+ ** Output: 9
+ ** Explanation: Subarray [5,1,3] has maximum sum = 9
+ *
+ ** Input: nums = [2,3,4,1,5], k = 2
+ ** Output: 7
+ ** Explanation: [3,4] gives maximum sum
+ *
+ *? --------------------------------------------------------------
+ */
+
+function maxSubArraySum(nums, k) {
+  const n = nums.length;
+  let max = -Infinity;
+  
+  for (let i = 0; i <= n-k; i++) {
+    let sum = 0;
+
+    max = Math.max(sum,max);
+  }
+  return max
+}
+
+//? TEST RUN
+
+console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
+console.log(maxSubArraySum([2, 3, 4, 1, 5], 2));    // Output: 7
