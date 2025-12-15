@@ -181,16 +181,23 @@ function minSubArrayLen(target, nums) {
 function maxSubArraySum(nums, k) {
   const n = nums.length;
   let max = -Infinity;
-  
-  for (let i = 0; i <= n-k; i++) {
-    let sum = 0;
+  let l = 0;
+  let sum = 0;
 
-    max = Math.max(sum,max);
+  for (let r = 0; r < n ; r++) {
+    sum += nums[r];
+    if (r - l + 1 === k) {
+      max = Math.max(sum, max);
+      sum -= nums[l];
+      l++;
+    }
   }
-  return max
+  
+  return max;
 }
 
 //? TEST RUN
 
 console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
-console.log(maxSubArraySum([2, 3, 4, 1, 5], 2));    // Output: 7
+
+console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
