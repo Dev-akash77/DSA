@@ -199,5 +199,5 @@ function maxSubArraySum(nums, k) {
 //? TEST RUN
 
 console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
-
 console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
+
