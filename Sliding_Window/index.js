@@ -184,7 +184,7 @@ function maxSubArraySum(nums, k) {
   let l = 0;
   let sum = 0;
 
-  for (let r = 0; r < n ; r++) {
+  for (let r = 0; r < n; r++) {
     sum += nums[r];
     if (r - l + 1 === k) {
       max = Math.max(sum, max);
@@ -192,12 +192,80 @@ function maxSubArraySum(nums, k) {
       l++;
     }
   }
-  
+
   return max;
 }
 
 //? TEST RUN
 
-console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
-console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
+// console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
+// console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
 
+/**
+ *! First Negative Number in every Window of Size K
+ ** GFG: https://www.geeksforgeeks.org/first-negative-integer-every-window-size-k/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Fixed Size) + Queue
+ *
+ *? PATTERN:
+ *? Fixed-size sliding window
+ *? Store negative numbers index/value
+ *? Window full → answer from front of queue
+ *? Remove out-of-window elements
+ *
+ *! ALGO NAME:
+ *! Fixed Window Sliding Technique
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(k)
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Microsoft, Meta, Flipkart
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5) — Very Important Sliding Window Pattern
+ *
+ * --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input: nums = [12, -1, -7, 8, -15, 30, 16, 28], k = 3
+ ** Output: [-1, -1, -7, -15, -15, 0]
+ *
+ ** Input: nums = [-8, 2, 3, -6, 10], k = 2
+ ** Output: [-8, 0, -6, -6]
+ *
+ *? --------------------------------------------------------------
+ */
+
+function firstNegativeInWindow(nums, k) {
+  const n = nums.length;
+  let result = [];
+  let queue = [];
+  let l = 0;
+
+  for (let r = 0; r < n; r++) {
+    if (nums[r] < 0) {
+      queue.push(nums[r]);
+    }
+
+    if (r - l + 1 === k) {
+      result.push(queue.length ? queue[0] : 0);
+      if (nums[l] < 0) {
+        queue.shift();
+      }
+      l++;
+    }
+  }
+
+  return result;
+}
+
+//? TEST RUN
+
+// console.log(firstNegativeInWindow([12, -1, -7, 8, -15, 30, 16, 28], 3));
+// Output: [-1, -1, -7, -15, -15, 0]
+
+// console.log(firstNegativeInWindow([-8, 2, 3, -6, 10], 2));
+// Output: [-8, 0, -6, -6]
