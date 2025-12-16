@@ -202,7 +202,7 @@ function maxSubArraySum(nums, k) {
 // console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
 
 /**
- *! First Negative Number in every Window of Size K
+ *! 4 | First Negative Number in every Window of Size K
  ** GFG: https://www.geeksforgeeks.org/first-negative-integer-every-window-size-k/
  *
  * --------------------------------------------------------------
