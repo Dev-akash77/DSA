@@ -269,3 +269,78 @@ function firstNegativeInWindow(nums, k) {
 
 // console.log(firstNegativeInWindow([-8, 2, 3, -6, 10], 2));
 // Output: [-8, 0, -6, -6]
+
+/** 
+ *! 5 | Find All Anagrams in a String
+ ** https://leetcode.com/problems/find-all-anagrams-in-a-string/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Fixed Size) + Frequency Map
+ *
+ *? PATTERN:
+ *? Fixed-size sliding window
+ *? Window size = pattern length
+ *? Maintain frequency count
+ *? count == 0 → anagram found
+ *
+ *! ALGO NAME:
+ *! Fixed Window Sliding Technique
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(1)   // 26 lowercase chars
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Microsoft, Meta
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5)
+ *
+ * --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input:  s = "cbaebabacd", p = "abc"
+ ** Output: [0, 6]
+ *
+ *? --------------------------------------------------------------
+ */
+
+function normalize(str) {
+  return str.split("").sort().join("");
+}
+
+function findAnagrams(s, p) {
+  const n = s.length;
+  const k = p.length;
+  let l = 0;
+  const result = [];
+  const sortedP = normalize(p);
+  let queue = ""
+
+  for (let r = 0; r <= n ; r++) {
+      queue+=s[r];
+
+      if (r-l+1===k){
+        if (normalize(queue)===sortedP) {
+          result.push(l);
+        }
+        queue = queue.slice(1)
+        l++;
+      } 
+
+  }
+  // console.log(result);
+  
+  return result;
+}
+
+//? TEST RUN
+
+console.log(findAnagrams("cbaebabacd", "abc"));
+// Expected Output: [0, 6]
+
+console.log(findAnagrams("abab", "ab"));
+// Expected Output: [0, 1, 2]
+
+
+
