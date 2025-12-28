@@ -13,5 +13,29 @@ const twosum = (nums, target) => {
     }
     return [];
 };
-console.log(twosum([2, 7, 11, 15], 9));
+// console.log(twosum([2,7,11,15], 9));
+function isAlpha(text) {
+    return /[a-zA-Z0-9]/.test(text);
+}
+function isPalindrome(nums) {
+    let i = 0;
+    let j = nums.length - 1;
+    while (i < j) {
+        if (!isAlpha(nums[j])) {
+            j--;
+            continue;
+        }
+        if (!isAlpha(nums[i])) {
+            i++;
+            continue;
+        }
+        if (nums[j]?.toLocaleLowerCase() != nums[i]?.toLocaleLowerCase()) {
+            return false;
+        }
+        i++;
+        j--;
+    }
+    return true;
+}
+console.log(isPalindrome("race a ecar")); // false
 //# sourceMappingURL=practis.js.map
