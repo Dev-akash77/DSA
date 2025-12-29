@@ -42,4 +42,22 @@ function isPalindrome(nums: string) {
   return true;
 }
 
-console.log(isPalindrome("race a ecar")); // false
+// console.log(isPalindrome("race a ecar")); // false
+
+// ! reverse a sring
+const reverseString = (nums: string[]) => {
+  let i = 0;
+  let j = nums.length - 1;
+
+  while (i < j) {
+    const temp = nums[i]!;
+
+    nums[i]! = nums[j]!;
+    nums[j]! = temp;
+    i++;
+    j--;
+  }
+  return nums;
+};
+
+// console.log(reverseString(["h", "e", "l", "l", "o"])); // ["o","l","l","e","h"]
