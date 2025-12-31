@@ -289,9 +289,47 @@ function maximumUniqueSubarray(nums) {
     }
     return maxSum;
 }
-const nums = [4, 2, 4, 5, 6];
-console.log(maximumUniqueSubarray(nums));
+// const nums = [4, 2, 4, 5, 6];
+// console.log(maximumUniqueSubarray(nums));
 // maximumUniqueSubarray(nums);
 // Output: 17
 // Unique subarray: [2, 4, 5, 6]
+//! Q8. Two Sum II - Input Array Is Sorted
+//? https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+//* Input:  numbers = [2,7,11,15], target = 9
+//* Output: [1,2]
+//* Explanation: numbers[0] + numbers[1] = 2 + 7 = 9 (1-based index)
+//! Intuition:
+//! Array already sorted hai.
+//! Two pointers use karo (left & right).
+//! Agar sum chota hai → left++
+//! Agar sum bada hai → right--
+//! Exact target mila → answer mil gaya.
+//! Algorithm:
+//! 1. left = 0, right = n-1
+//! 2. While left < right:
+//!       - sum = numbers[left] + numbers[right]
+//!       - If sum == target → return [left+1, right+1]
+//!       - If sum < target → left++
+//!       - Else → right--
+//! 3. Guaranteed solution exists (as per problem)
+//! TC: O(n)
+//! SC: O(1)
+const twoSum = (numbers, target) => {
+    let i = 0;
+    let j = numbers.length - 1;
+    while (i < j) {
+        const sum = numbers[i] + numbers[j];
+        if (sum === target)
+            return [i + 1, j + 1];
+        if (sum < target)
+            i++;
+        if (sum > target)
+            j--;
+    }
+    return [];
+};
+// console.log(twoSum([2, 7, 11, 15], 9)); // [1,2]
+// console.log(twoSum([2, 3, 4], 6)); // [1,3]
+// console.log(twoSum([5, 25, 75], 100)); // [2,3]
 //# sourceMappingURL=index.js.map
