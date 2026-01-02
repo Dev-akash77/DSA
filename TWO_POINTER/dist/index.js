@@ -332,4 +332,38 @@ const twoSum = (numbers, target) => {
 // console.log(twoSum([2, 7, 11, 15], 9)); // [1,2]
 // console.log(twoSum([2, 3, 4], 6)); // [1,3]
 // console.log(twoSum([5, 25, 75], 100)); // [2,3]
+//! Q9. Count Pairs Whose Sum is Less than Target
+//? https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+//* Input:  nums = [-1,1,2,3,1], target = 2
+//* Output: 3
+//* Explanation:
+//* Pairs are:
+//* (-1,1) -> 0
+//* (-1,1) -> 0
+//* (-1,2) -> 1
+//! Intuition:
+//! Array ko pehle sort karna padega.
+//! Two pointers use karenge (left & right).
+//! TC: O(n log n)  // sorting
+//! SC: O(1)
+const countPairs = (nums, target) => {
+    nums.sort((a, b) => a - b);
+    let count = 0;
+    let j = nums.length - 1;
+    let i = 0;
+    while (i < j) {
+        const sum = nums[i] + nums[j];
+        if (sum < target) {
+            count += (j - i);
+            i++;
+        }
+        else {
+            j--;
+        }
+    }
+    return count;
+};
+console.log(countPairs([-1, 1, 2, 3, 1], 2)); // 3
+//  countPairs([-1,1,2,3,1], 2); // 3
+console.log(countPairs([0, -1, 2, -3, 1], -2)); // 2
 //# sourceMappingURL=index.js.map
