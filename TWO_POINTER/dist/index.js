@@ -354,7 +354,7 @@ const countPairs = (nums, target) => {
     while (i < j) {
         const sum = nums[i] + nums[j];
         if (sum < target) {
-            count += (j - i);
+            count += j - i;
             i++;
         }
         else {
@@ -363,7 +363,42 @@ const countPairs = (nums, target) => {
     }
     return count;
 };
-console.log(countPairs([-1, 1, 2, 3, 1], 2)); // 3
+// ?------test case------------------------------------------
+// console.log(countPairs([-1,1,2,3,1], 2)); // 3
 //  countPairs([-1,1,2,3,1], 2); // 3
-console.log(countPairs([0, -1, 2, -3, 1], -2)); // 2
+// console.log(countPairs([0,-1,2,-3,1], -2)); // 2
+//! Q10. 3Sum
+//? https://leetcode.com/problems/3sum/
+//* Input:  nums = [-1,0,1,2,-1,-4]
+//* Output: [[-1,-1,2],[-1,0,1]]
+//! Intuition:
+//! Pehle array sort karenge.
+//! Ek number fix karenge (i).
+//! Baaki ke liye Two Sum (left & right pointers).
+//! Duplicate triplets avoid karna hoga.
+//! TC: O(n^2)
+//! SC: O(1) (excluding output)
+const threeSum = (nums) => {
+    const res = [];
+    const set = new Set();
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i + 1; j < nums.length; j++) {
+            for (let k = j + 1; k < nums.length; k++) {
+                const sum = nums[i] + nums[j] + nums[k];
+                if (sum === 0) {
+                    const triplet = [nums[i], nums[j], nums[k]].sort((a, b) => a - b);
+                    const key = triplet.join("");
+                    if (!set.has(key)) {
+                        res.push(triplet);
+                        set.add(key);
+                    }
+                }
+            }
+        }
+    }
+    return res;
+};
+// ?------test case------------------------------------------
+console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+// Output: [ [ -1, -1, 2 ], [ -1, 0, 1 ] ]
 //# sourceMappingURL=index.js.map
