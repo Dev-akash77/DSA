@@ -379,26 +379,35 @@ const countPairs = (nums, target) => {
 //! TC: O(n^2)
 //! SC: O(1) (excluding output)
 const threeSum = (nums) => {
+    nums.sort((a, b) => a - b);
     const res = [];
-    const set = new Set();
     for (let i = 0; i < nums.length; i++) {
-        for (let j = i + 1; j < nums.length; j++) {
-            for (let k = j + 1; k < nums.length; k++) {
-                const sum = nums[i] + nums[j] + nums[k];
-                if (sum === 0) {
-                    const triplet = [nums[i], nums[j], nums[k]].sort((a, b) => a - b);
-                    const key = triplet.join("");
-                    if (!set.has(key)) {
-                        res.push(triplet);
-                        set.add(key);
-                    }
-                }
+        if (i > 0 && nums[i] === nums[i - 1])
+            continue;
+        let left = i + 1;
+        let right = nums.length - 1;
+        while (left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
+            if (sum === 0) {
+                res.push([nums[i], nums[left], nums[right]]);
+                left++;
+                right--;
+                while (left < right && nums[left] === nums[left - 1])
+                    left++;
+                while (left < right && nums[right] === nums[right + 1])
+                    right--;
+            }
+            else if (sum > 0) {
+                right--;
+            }
+            else {
+                left++;
             }
         }
     }
     return res;
 };
 // ?------test case------------------------------------------
-console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 // Output: [ [ -1, -1, 2 ], [ -1, 0, 1 ] ]
 //# sourceMappingURL=index.js.map

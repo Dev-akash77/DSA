@@ -350,15 +350,152 @@ function maximumUniqueSubarray(nums: number[]): number {
 
       l = newL;
     }
-    sum +=x;
+    sum += x;
     map.set(x, r)!;
     maxSum = Math.max(sum, maxSum);
   }
   return maxSum;
 }
 
-const nums = [4, 2, 4, 5, 6];
-console.log(maximumUniqueSubarray(nums));
+// const nums = [4, 2, 4, 5, 6];
+// console.log(maximumUniqueSubarray(nums));
 // maximumUniqueSubarray(nums);
 // Output: 17
 // Unique subarray: [2, 4, 5, 6]
+
+//! Q8. Two Sum II - Input Array Is Sorted
+//? https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
+//* Input:  numbers = [2,7,11,15], target = 9
+//* Output: [1,2]
+//* Explanation: numbers[0] + numbers[1] = 2 + 7 = 9 (1-based index)
+
+//! Intuition:
+//! Array already sorted hai.
+//! Two pointers use karo (left & right).
+//! Agar sum chota hai → left++
+//! Agar sum bada hai → right--
+//! Exact target mila → answer mil gaya.
+
+//! Algorithm:
+//! 1. left = 0, right = n-1
+//! 2. While left < right:
+//!       - sum = numbers[left] + numbers[right]
+//!       - If sum == target → return [left+1, right+1]
+//!       - If sum < target → left++
+//!       - Else → right--
+//! 3. Guaranteed solution exists (as per problem)
+
+//! TC: O(n)
+//! SC: O(1)
+
+const twoSum = (numbers: number[], target: number): number[] => {
+  let i = 0;
+  let j = numbers.length - 1;
+
+  while (i < j) {
+    const sum = numbers[i]! + numbers[j]!;
+    if (sum === target) return [i + 1, j + 1];
+    if (sum < target) i++;
+    if (sum > target) j--;
+  }
+
+  return [];
+};
+
+// console.log(twoSum([2, 7, 11, 15], 9)); // [1,2]
+// console.log(twoSum([2, 3, 4], 6)); // [1,3]
+// console.log(twoSum([5, 25, 75], 100)); // [2,3]
+
+//! Q9. Count Pairs Whose Sum is Less than Target
+//? https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+
+//* Input:  nums = [-1,1,2,3,1], target = 2
+//* Output: 3
+//* Explanation:
+//* Pairs are:
+//* (-1,1) -> 0
+//* (-1,1) -> 0
+//* (-1,2) -> 1
+
+//! Intuition:
+//! Array ko pehle sort karna padega.
+//! Two pointers use karenge (left & right).
+//! TC: O(n log n)  // sorting
+//! SC: O(1)
+
+const countPairs = (nums: number[], target: number): number => {
+  nums.sort((a, b) => a - b);
+
+  let count = 0;
+  let j = nums.length - 1;
+  let i = 0;
+
+  while (i < j) {
+    const sum = nums[i]! + nums[j]!;
+    if (sum < target) {
+      count += j - i;
+      i++;
+    } else {
+      j--;
+    }
+  }
+
+  return count;
+};
+
+// ?------test case------------------------------------------
+// console.log(countPairs([-1,1,2,3,1], 2)); // 3
+//  countPairs([-1,1,2,3,1], 2); // 3
+// console.log(countPairs([0,-1,2,-3,1], -2)); // 2
+
+//! Q10. 3Sum
+//? https://leetcode.com/problems/3sum/
+
+//* Input:  nums = [-1,0,1,2,-1,-4]
+//* Output: [[-1,-1,2],[-1,0,1]]
+
+//! Intuition:
+//! Pehle array sort karenge.
+//! Ek number fix karenge (i).
+//! Baaki ke liye Two Sum (left & right pointers).
+//! Duplicate triplets avoid karna hoga.
+
+//! TC: O(n^2)
+//! SC: O(1) (excluding output)
+
+const threeSum = (nums: number[]): number[][] => {
+  nums.sort((a, b) => a - b);
+  const res: number[][] = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+
+    let left = i + 1;
+    let right = nums.length - 1;
+
+    while (left < right) {
+      const sum = nums[i]! + nums[left]! + nums[right]!;
+
+      if (sum === 0) {
+        res.push([nums[i]!, nums[left]!, nums[right]!]);
+        left++;
+        right--;
+        while (left < right && nums[left] === nums[left - 1]) left++;
+        while (left < right && nums[right] === nums[right + 1]) right--;
+      }
+
+      else if (sum > 0) {
+        right--;
+      } else {
+       left++;
+      }
+    }
+  }
+
+  return res;
+};
+
+// ?------test case------------------------------------------
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+// Output: [ [ -1, -1, 2 ], [ -1, 0, 1 ] ]
