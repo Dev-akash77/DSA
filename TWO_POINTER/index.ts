@@ -499,3 +499,56 @@ const threeSum = (nums: number[]): number[][] => {
 // ?------test case------------------------------------------
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 // Output: [ [ -1, -1, 2 ], [ -1, 0, 1 ] ]
+
+
+//! Q11. Remove Duplicates from Sorted Array II
+//? https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+
+//* Input:  nums = [1,1,1,2,2,3]
+//* Output: 5
+//* Modified nums = [1,1,2,2,3]
+
+//! Intuition:
+//! Array already sorted hai.
+//! Har number max 2 times allowed hai.
+//! Ek pointer (res) rakhenge jahan next valid element likhna hai.
+//! Ek count rakhenge jo current number ka frequency track kare.
+
+//! Approach:
+//! 1. Agar size <= 2 ho, directly return n.
+//! 2. First element ko rakh ke start karenge.
+//! 3. Same number mila → count++
+//! 4. Naya number mila → count reset = 1
+//! 5. Jab tak count <= 2, element ko nums[res] par place karte rahenge.
+
+//! TC: O(n)
+//! SC: O(1)
+
+const removeDuplicate = (nums: number[]): number => {
+  const n = nums.length;
+  if (n <= 2) return n;
+
+  let count = 1;   // current element count
+  let res = 1;     // position to place next valid element
+
+  for (let i = 1; i < n; i++) {
+    if (nums[i] === nums[i - 1]) {
+      count++;
+    } else {
+      count = 1;
+    }
+
+    if (count <= 2) {
+      nums[res] = nums[i]!;
+      res++;
+    }
+  }
+
+  return res;
+};
+
+// ?------test case------------------------------------------
+// const input = [1, 1, 1, 2, 2, 3];
+// const k = removeDuplicate(input);
+// console.log(k); // 5
+// console.log(input.slice(0, k)); // [1,1,2,2,3]
