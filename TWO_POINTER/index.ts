@@ -483,12 +483,10 @@ const threeSum = (nums: number[]): number[][] => {
         right--;
         while (left < right && nums[left] === nums[left - 1]) left++;
         while (left < right && nums[right] === nums[right + 1]) right--;
-      }
-
-      else if (sum > 0) {
+      } else if (sum > 0) {
         right--;
       } else {
-       left++;
+        left++;
       }
     }
   }
@@ -499,7 +497,6 @@ const threeSum = (nums: number[]): number[][] => {
 // ?------test case------------------------------------------
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 // Output: [ [ -1, -1, 2 ], [ -1, 0, 1 ] ]
-
 
 //! Q11. Remove Duplicates from Sorted Array II
 //? https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
@@ -528,8 +525,8 @@ const removeDuplicate = (nums: number[]): number => {
   const n = nums.length;
   if (n <= 2) return n;
 
-  let count = 1;   // current element count
-  let res = 1;     // position to place next valid element
+  let count = 1; // current element count
+  let res = 1; // position to place next valid element
 
   for (let i = 1; i < n; i++) {
     if (nums[i] === nums[i - 1]) {
@@ -552,3 +549,69 @@ const removeDuplicate = (nums: number[]): number => {
 // const k = removeDuplicate(input);
 // console.log(k); // 5
 // console.log(input.slice(0, k)); // [1,1,2,2,3]
+
+
+
+//! Q13. Append Characters to String to Make Subsequence
+//? https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/
+
+//* Input:
+//* s = "coaching", t = "coding"
+//* Output: 4
+//*
+//* Explanation:
+//* We want to make `t` a subsequence of `s` by appending characters at the end of `s`.
+//* Find how many characters of `t` are NOT matched in order with `s`.
+
+//! Meaning:
+//! - We try to match `t` inside `s` from left to right
+//! - Characters of `t` that are not matched must be appended
+//! - Return number of characters to append
+
+//! Intuition:
+//! Use Two Pointers technique
+//! - Pointer `i` → traverse string `s`
+//! - Pointer `j` → traverse string `t`
+//!
+//! If s[i] == t[j]:
+//!     → character matched
+//!     → move `j` forward
+//! Always move `i` forward
+//!
+//! After traversal:
+//! - `j` tells how many characters of `t` are already matched
+//! - Remaining characters = t.length - j
+//! - These must be appended
+
+//! Algorithm (Optimal):
+//! 1. Initialize i = 0, j = 0
+//! 2. While i < s.length and j < t.length:
+//!       - If s[i] === t[j]:
+//!             j++
+//!       - i++
+//! 3. Return (t.length - j)
+
+//! Time Complexity: O(n)
+//! Space Complexity: O(1)
+//! Pattern: Two Pointers (Subsequence Matching)
+//! Asked In: Amazon, Google, Microsoft (String + Two Pointer round)
+
+function appendCharacters(s: string, t: string): number {
+    let i = 0;
+    let j = 0;
+
+    while (i < s.length && j < t.length) {
+        if (s[i] === t[j]) {
+            j++;
+        }
+        i++;
+    }
+
+    return t.length - j;
+}
+
+//* Test Cases
+console.log(appendCharacters("coaching", "coding")); // 4
+console.log(appendCharacters("abcde", "a"));        // 0
+console.log(appendCharacters("a", "a"));            // 0
+
