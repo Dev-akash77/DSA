@@ -336,11 +336,36 @@ function findAnagrams(s, p) {
 
 //? TEST RUN
 
-console.log(findAnagrams("cbaebabacd", "abc"));
+// console.log(findAnagrams("cbaebabacd", "abc"));
 // Expected Output: [0, 6]
 
-console.log(findAnagrams("abab", "ab"));
+// console.log(findAnagrams("abab", "ab"));
 // Expected Output: [0, 1, 2]
 
 
 
+function longestOnes(nums, k) {
+    let res =0;
+    let j = 0;
+    let count = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i]===0) count++;
+
+      while (count>k) {
+        if(nums[j]===0) count--;
+        j++;
+      }
+      res = Math.max(res, i - j + 1) ;
+
+    }
+    console.log(res);
+    
+    return res;
+};
+
+
+longestOnes([1,1,1,0,0,0,1,1,1,1,0], 2); // 6
+longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3); // 10
+          //                                     i
+          //                           j
