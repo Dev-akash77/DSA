@@ -5,11 +5,11 @@
 
 ---
 
-## 🗺️ Part 1: The 8-Week Battle Plan (Roadmap)
+## Part 1: The 8-Week Battle Plan (Roadmap)
 
 This isn't just a list; it's a schedule. Stick to this to crack product companies.
 
-### 🟢 Phase 1: The Foundation (Weeks 1-3)
+### Phase 1: The Foundation (Weeks 1-3)
 *Goal: Clear the "Online Assessment" (OA) - The biggest rejection filter.*
 
 | Activity | Time/Day | Focus Area |
@@ -18,7 +18,7 @@ This isn't just a list; it's a schedule. Stick to this to crack product companie
 | **Aptitude** | 30 Mins | Quants & Logical Reasoning (Crucial for TCS/Wipro). |
 | **Outcome** | **Speed.** | Solve Easy questions in <15 mins, Medium in <30 mins. |
 
-### 🟡 Phase 2: The Core Defense (Weeks 4-6)
+### Phase 2: The Core Defense (Weeks 4-6)
 *Goal: Dominate the Technical Interview with your strengths.*
 
 | Activity | Time/Day | Focus Area |
@@ -27,7 +27,7 @@ This isn't just a list; it's a schedule. Stick to this to crack product companie
 | **Backend Core** | 45 Mins | Node.js Internals (Event Loop), SQL vs NoSQL, Indexing, Caching. |
 | **Outcome** | **Depth.** | Be able to explain every line of code in your projects. |
 
-### 🔴 Phase 3: The Final Polish (Weeks 7-8)
+### Phase 3: The Final Polish (Weeks 7-8)
 *Goal: Cracking the HR & Behavioral Rounds.*
 
 | Activity | Time/Day | Focus Area |
@@ -38,11 +38,11 @@ This isn't just a list; it's a schedule. Stick to this to crack product companie
 
 ---
 
-## 🔥 Part 2: The 100 "Real-World" Interview Questions
+## Part 2: The 100 "Real-World" Interview Questions
 
 This collection covers everything from "Hello World" to "System Architecture".
 
-### 🛡️ Section A: Project Defense (Your Superpower)
+### Section A: Project Defense (Your Superpower)
 *These questions are your ticket to a higher package. Answer these with "Founder Energy".*
 
 #### **Architecture & Design**
@@ -61,7 +61,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 🧠 Section B: Data Structures & Algorithms (The Filter)
+### Section B: Data Structures & Algorithms (The Filter)
 *Don't memorize code. Memorize the **Logic** and **Patterns**.*
 
 #### **Arrays & Strings (High Priority)**
@@ -96,7 +96,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### ⚡ Section C: JavaScript & Node.js (The Core)
+### Section C: JavaScript & Node.js (The Core)
 *Expect deep-dive questions here. You cannot fail this section.*
 
 33. **[Event Loop]** "Explain the Node.js Event Loop phases (Timers, Poll, Check) with a diagram."
@@ -113,7 +113,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 📚 Section D: CS Fundamentals (The Degree Check)
+### Section D: CS Fundamentals (The Degree Check)
 *Service-based companies (TCS, Wipro) love these questions.*
 
 #### **DBMS (Database Management)**
@@ -141,7 +141,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 🏗️ Section E: System Design (SDE-1 Level)
+### Section E: System Design (SDE-1 Level)
 *Don't panic. Just use your common sense from your projects.*
 
 61. **[Scaling]** Vertical Scaling (Bigger Machine) vs Horizontal Scaling (More Machines).
@@ -154,7 +154,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 🧩 Section F: Logic & Aptitude (For Mass Recruiters)
+### Section F: Logic & Aptitude (For Mass Recruiters)
 68. **[OOPs]** 4 Pillars: Encapsulation, Abstraction, Inheritance, Polymorphism.
 69. **[OOPs]** Method Overloading vs Overriding.
 70. **[OOPs]** Abstract Class vs Interface.
@@ -167,7 +167,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 🤝 Section G: Behavioral & HR (The Culture Fit)
+### Section G: Behavioral & HR (The Culture Fit)
 *Answer these in simple English. No Hinglish here.*
 
 77. **[Intro]** "Tell me about yourself." *(Your Pitch: 4 Yrs Exp + Projects + Passion).*
@@ -182,7 +182,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### ⏱️ Section H: Rapid Fire (One-Liners)
+### Section H: Rapid Fire (One-Liners)
 *Instant answers required.*
 
 86. **CORS:** Cross-Origin Resource Sharing.
@@ -203,7 +203,7 @@ This collection covers everything from "Hello World" to "System Architecture".
 
 ---
 
-### 🌟 Reality Check for Akash
+### Reality Check for Akash
 
 * **English:** Keep it simple. Don't use big words. Just be clear. "I built X using Y because Z."
 * **Confidence:** You have built things that 4th-year B.Tech students dream of. Own that experience.
