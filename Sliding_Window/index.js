@@ -367,5 +367,3 @@ function longestOnes(nums, k) {
 
 longestOnes([1,1,1,0,0,0,1,1,1,1,0], 2); // 6
 longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3); // 10
-          //                                     i
-          //                           j
