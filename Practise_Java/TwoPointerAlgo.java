@@ -1,46 +1,72 @@
-import java.util.Arrays;
+
+/**
+ *! 1 | Longest Substring Without Repeating Characters
+ ** LeetCode: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+ ** GFG: https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window + HashMap (Set)
+ *
+ *? PATTERN:
+ *? Variable-size sliding window
+ *? Expand window until duplicate appears → shrink from left
+ *
+ *! ALGO NAME:
+ *! Two Pointers + HashSet Sliding Window
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(min(n, alphabet))
+ *
+ *! ASKED IN:
+ *! Google, Amazon, Meta, Microsoft, Uber, Bloomberg,
+ *! Adobe, Oracle, Walmart Labs, Atlassian (MOST ASKED)
+ *
+ *? IMPORTANCE (out of 5):
+ *?⭐⭐⭐⭐⭐ (5/5) — Must-do sliding window question
+ *
+ *? --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input:  s = "abcabcbb"
+ ** Output: 3
+ ** Explanation: "abc" is the longest substring without repeating chars.
+ *
+ ** Input:  s = "bbbbb"
+ ** Output: 1
+ *
+ ** Input:  s = "pwwkew"
+ ** Output: 3  -> "wke"
+ *
+ *? --------------------------------------------------------------
+ */
+import java.util.ArrayList;
 
 public class TwoPointerAlgo {
 
-    public static void main(String[] args) {
-        //? Input Data
-        // nums1 me 1,2,3 hai, aur 3 zero hain (jagah ke liye)
-        int[] nums1 = {1, 2, 3, 0, 0, 0}; 
-        int m = 3; // nums1 me kaam ke elements kitne hain
-        
-        int[] nums2 = {2, 5, 6};
-        int n = 3; // nums2 me elements kitne hain
+    public static int longestSubstring(String s) {
+        int res = 0;
+        int n = s.length();
+        int j = 0;
+        ArrayList<Character> set = new ArrayList<>();
 
-        //? Function Call
-        merge(nums1, m, nums2, n);
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
 
-        //? Output Print
-        System.out.println("Final Sorted Array: " + Arrays.toString(nums1));
-    }
-
-    //! Q1. Merge Sorted Array
-    //! TC: O(m + n) | SC: O(1)
-    public static void merge(int[] nums1, int m, int[] nums2, int n) {
-        // Pointers setup
-        int p1 = m - 1;      // nums1 ke last valid number par (index 2)
-        int p2 = n - 1;      // nums2 ke last number par (index 2)
-        int pMerge = m + n - 1; // nums1 ke bilkul end par (index 5)
-
-        // Jab tak nums2 me elements bache hain
-        while (p2 >= 0) {
-            
-            // Agar nums1 ka element bada hai, to use end me bhejo
-            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
-                nums1[pMerge] = nums1[p1];
-                p1--;
-            } 
-            // Nahi to nums2 ka element end me bhejo
-            else {
-                nums1[pMerge] = nums2[p2];
-                p2--;
+            while (set.contains(ch)) {
+                set.remove(Character.valueOf(s.charAt(j)));
+                j++;
             }
-            // Pointer ko peeche khiskao
-            pMerge--;
+            set.add((ch));
+            res = Math.max(res, i - j + 1);
         }
+
+        return res;
+
     }
+    public static void main(String[] args) {
+        System.out.println(longestSubstring("abcabcbb")); // 3 
+        System.out.println(longestSubstring("bbbbbbbb")); // 1 
+    }
+
 }
