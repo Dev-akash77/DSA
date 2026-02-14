@@ -73,6 +73,24 @@ class LinkedList {
         }
         current.next = null;
     }
+    // ! Remove Specefic Node
+    removeSpecificNode(id) {
+        if (!this.head || id < 0)
+            return;
+        if (id === 0) {
+            this.head = this.head.next;
+            return;
+        }
+        let count = 0;
+        let current = this.head;
+        while (current.next && count < id - 1) {
+            current = current.next;
+            count++;
+        }
+        if (!current.next)
+            return;
+        current.next = current.next?.next;
+    }
     // ! print all linkedlist data
     print() {
         let current = this.head;
@@ -92,5 +110,6 @@ list.frontPush(1);
 list.insertAt(3, 4);
 list.deleteFirstNode();
 list.removeLastNode();
+list.removeSpecificNode(1);
 list.print();
 //# sourceMappingURL=learning.js.map
