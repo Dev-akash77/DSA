@@ -40,25 +40,25 @@ class LinkedList<T> {
   }
 
   // ! Add on specific index
-  insertAt(index:number,data:T){
+  insertAt(index: number, data: T) {
     if (index < 0) return;
 
     const newNode = new Node(data);
 
-    if (index===0) {
+    if (index === 0) {
       newNode.next = this.head;
       this.head = newNode;
-      return  
+      return;
     }
 
     let current = this.head;
     let count = 0;
 
-    while(current && count<index-1){
+    while (current && count < index - 1) {
       current = current.next;
       count++;
     }
-    
+
     if (!current) return;
 
     newNode.next = current.next;
@@ -66,20 +66,20 @@ class LinkedList<T> {
   }
 
   // ! delete first node
-  deleteFirstNode(){
+  deleteFirstNode() {
     if (!this.head) return;
 
     this.head = this.head.next;
   }
 
   // ! delete last node
-  removeLastNode(){
+  removeLastNode() {
     if (!this.head) return;
 
     if (!this.head.next) {
       this.head = null;
       return;
-    };
+    }
 
     let current = this.head;
 
@@ -90,10 +90,10 @@ class LinkedList<T> {
   }
 
   // ! Remove Specefic Node
-  removeSpecificNode(id:number):void{
-    if (!this.head || id<0) return;
+  removeSpecificNode(id: number): void {
+    if (!this.head || id < 0) return;
 
-    if (id===0) {
+    if (id === 0) {
       this.head = this.head.next;
       return;
     }
@@ -101,7 +101,7 @@ class LinkedList<T> {
     let count = 0;
     let current = this.head;
 
-    while(current.next && count < id - 1){
+    while (current.next && count < id - 1) {
       current = current.next;
       count++;
     }
@@ -109,7 +109,6 @@ class LinkedList<T> {
     if (!current.next) return;
 
     current.next = current.next?.next;
-
   }
 
   // ! print all linkedlist data
@@ -124,19 +123,38 @@ class LinkedList<T> {
     console.log(result);
   }
 
+  reverse(): void {
+    let prev: Node<T> | null = null;
+    let current: Node<T> | null = this.head;
+
+    while (current !== null) {
+      const nextTemp: Node<T> | null = current.next;
+
+      current.next = prev;
+
+      prev = current;
+      current = nextTemp;
+    }
+
+    this.head = prev;
+  }
 }
 
 const list = new LinkedList<Number>();
 
+list.endPush(1);
 list.endPush(2);
 list.endPush(3);
+list.endPush(4);
 list.endPush(5);
-list.frontPush(1);
-list.insertAt(3,4);
-list.deleteFirstNode();
-list.removeLastNode();
-list.removeSpecificNode(1);
-
+list.endPush(6);
+list.endPush(7);
+// list.frontPush(1);
+// list.insertAt(3,4);
+// list.deleteFirstNode();
+// list.removeLastNode();
+// list.removeSpecificNode(1);
 list.print();
-
+list.reverse();
+list.print();
 

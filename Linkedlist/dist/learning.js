@@ -66,7 +66,6 @@ class LinkedList {
             this.head = null;
             return;
         }
-        ;
         let current = this.head;
         while (current.next && current.next?.next) {
             current = current.next;
@@ -101,15 +100,32 @@ class LinkedList {
         }
         console.log(result);
     }
+    reverse() {
+        let prev = null;
+        let current = this.head;
+        while (current !== null) {
+            const nextTemp = current.next;
+            current.next = prev;
+            prev = current;
+            current = nextTemp;
+        }
+        this.head = prev;
+    }
 }
 const list = new LinkedList();
+list.endPush(1);
 list.endPush(2);
 list.endPush(3);
+list.endPush(4);
 list.endPush(5);
-list.frontPush(1);
-list.insertAt(3, 4);
-list.deleteFirstNode();
-list.removeLastNode();
-list.removeSpecificNode(1);
+list.endPush(6);
+list.endPush(7);
+// list.frontPush(1);
+// list.insertAt(3,4);
+// list.deleteFirstNode();
+// list.removeLastNode();
+// list.removeSpecificNode(1);
+list.print();
+list.reverse();
 list.print();
 //# sourceMappingURL=learning.js.map
