@@ -104,10 +104,10 @@ class LinkedList {
         let prev = null;
         let current = this.head;
         while (current !== null) {
-            const nextTemp = current.next;
+            const next = current.next;
             current.next = prev;
             prev = current;
-            current = nextTemp;
+            current = next;
         }
         this.head = prev;
     }

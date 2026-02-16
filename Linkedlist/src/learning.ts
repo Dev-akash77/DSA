@@ -128,12 +128,10 @@ class LinkedList<T> {
     let current: Node<T> | null = this.head;
 
     while (current !== null) {
-      const nextTemp: Node<T> | null = current.next;
-
+      const next: Node<T> | null = current.next;
       current.next = prev;
-
       prev = current;
-      current = nextTemp;
+      current = next;
     }
 
     this.head = prev;
@@ -157,4 +155,3 @@ list.endPush(7);
 list.print();
 list.reverse();
 list.print();
-
