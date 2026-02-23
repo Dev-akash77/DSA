@@ -123,6 +123,7 @@ class LinkedList<T> {
     console.log(result);
   }
 
+  // ! Revrse a linkedlist
   reverse(): void {
     let prev: Node<T> | null = null;
     let current: Node<T> | null = this.head;
@@ -136,22 +137,50 @@ class LinkedList<T> {
 
     this.head = prev;
   }
+
+  // ! check palindrome
+  palindrome():boolean{
+    let current = this.head;
+    let nums = [];
+
+    while(current!==null){
+      nums.push(current?.data);
+       current = current.next;
+    }
+
+    let r = nums.length-1;
+    let l  = 0;
+
+    while(l<r){
+      if (nums[l]===nums[r]!) {
+        r--;
+        l++;
+      }else{
+        return false
+      }
+    }
+    return true;
+
+  }
+
+
 }
 
 const list = new LinkedList<Number>();
 
-list.endPush(1);
+list.endPush(0);
 list.endPush(2);
-list.endPush(3);
-list.endPush(4);
-list.endPush(5);
-list.endPush(6);
-list.endPush(7);
+list.endPush(2);
+list.endPush(0);
+
 // list.frontPush(1);
 // list.insertAt(3,4);
 // list.deleteFirstNode();
 // list.removeLastNode();
 // list.removeSpecificNode(1);
+// list.print();
+// list.reverse();
 list.print();
-list.reverse();
-list.print();
+
+console.log(list.palindrome());
+
