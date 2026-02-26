@@ -8,7 +8,7 @@ class Node<T> {
   }
 }
 
-class LinkedList<T> {
+ class LinkedList<T> {
   head: Node<T> | null;
 
   constructor() {
