@@ -1,12 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class ListNode {
-    val;
-    next;
-    constructor(val, next) {
-        this.val = val ?? 0;
-        this.next = next ?? null;
-    }
+  val: number;
+  next: ListNode | null;
+
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = val ?? 0;
+    this.next = next ?? null;
+  }
 }
 /**
  *! 1 | Linked List Cycle
@@ -50,31 +49,41 @@ class ListNode {
  *
  *? --------------------------------------------------------------
  */
-function hasCycle(head) {
-    if (!head)
-        return false;
-    let slow = head;
-    let fast = head;
-    while (fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-        if (slow === fast) {
-            return true;
-        }
+
+function hasCycle(head: ListNode | null): boolean {
+  if (!head) return false;
+
+  let slow: ListNode | null = head;
+  let fast: ListNode | null = head;
+
+  while (fast && fast.next) {
+    slow = slow!.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
     }
-    return false;
+  }
+
+  return false;
 }
+
 // ! Test Case
+
 // const node1 = new ListNode(1);
 // const node2 = new ListNode(2);
 // const node3 = new ListNode(3);
 // const node4 = new ListNode(4);
+
 // node1.next = node2;
 // node2.next = node3;
 // node3.next = node4;
+
 //?  Create cycle
 // node4.next = node2;
+
 // console.log(hasCycle(node1)); //? true
+
 /**
  *! 2 | Linked List Cycle II
  ** LeetCode: https://leetcode.com/problems/linked-list-cycle-ii/
@@ -112,39 +121,45 @@ function hasCycle(head) {
  *
  *? --------------------------------------------------------------
  */
-function detectCycle(head) {
-    if (!head)
-        return null;
-    let slow = head;
-    let fast = head;
-    // Step 1: Detect cycle
-    while (fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-        if (slow === fast) {
-            // Step 2: Find entry point
-            let entry = head;
-            while (entry !== slow) {
-                entry = entry.next;
-                slow = slow.next;
-            }
-            return entry;
-        }
+
+function detectCycle(head: ListNode | null): ListNode | null {
+  if (!head) return null;
+
+  let fast: ListNode | null = head;
+  let slow: ListNode | null = head;
+
+  while (fast && fast.next) {
+    slow = slow!.next;
+    fast = fast!.next.next;
+
+    if (slow === fast) {
+      let entry: ListNode | null = head;
+
+      while (entry != slow) {
+        entry = entry!.next;
+        slow = slow!.next;
+      }
+      return entry;
     }
-    return null;
+  }
+
+  return null;
 }
+
 //! Create nodes
 const node1 = new ListNode(3);
 const node2 = new ListNode(2);
 const node3 = new ListNode(0);
 const node4 = new ListNode(-4);
+
 //! Connect normally
 node1.next = node2;
 node2.next = node3;
 node3.next = node4;
+
 //! Create cycle (pos = 1)
 node4.next = node2;
+
 // Test
 const result = detectCycle(node1);
 console.log(result?.val); //? Expected Output: 2
-//# sourceMappingURL=easy.js.map

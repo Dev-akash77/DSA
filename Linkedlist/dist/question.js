@@ -115,16 +115,14 @@ function hasCycle(head) {
 function detectCycle(head) {
     if (!head)
         return null;
-    let slow = head;
     let fast = head;
-    // Step 1: Detect cycle
+    let slow = head;
     while (fast && fast.next) {
         slow = slow.next;
         fast = fast.next.next;
         if (slow === fast) {
-            // Step 2: Find entry point
             let entry = head;
-            while (entry !== slow) {
+            while (entry != slow) {
                 entry = entry.next;
                 slow = slow.next;
             }
@@ -147,4 +145,4 @@ node4.next = node2;
 // Test
 const result = detectCycle(node1);
 console.log(result?.val); //? Expected Output: 2
-//# sourceMappingURL=easy.js.map
+//# sourceMappingURL=question.js.map
