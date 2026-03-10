@@ -77,4 +77,40 @@ function sortColour(nums) {
 // sortColour([2,0,2,1,1,0]);
 // console.log(sortColour([2, 0, 2, 1, 1, 0])); //[0,0,1,1,2,2]
 // console.log(sortColour([2, 0, 1])); //[0,1,2]
+// ! 3 sum
+function threeSum(nums) {
+    nums.sort((a, b) => a - b);
+    const result = [];
+    for (let i = 0; i < nums.length - 1; i++) {
+        let j = i + 1;
+        let k = nums.length - 1;
+        if (i === 0 && nums[i] === nums[i - 1])
+            continue;
+        while (k > j) {
+            let sum = nums[i] + nums[j] + nums[k];
+            if (sum === 0) {
+                result.push([nums[i], nums[j], nums[k]]);
+                while (k > j && nums[j] === nums[j + 1])
+                    j++;
+                while (k > j && nums[k] === nums[k - 1])
+                    k--;
+                j++;
+                k--;
+            }
+            if (sum > 0) {
+                k--;
+            }
+            else {
+                j++;
+            }
+        }
+    }
+    return result;
+}
+// // Input
+// const nums: number[] = [-1, 0, 1, 2, -1, -4];
+// // Call function
+// const output = threeSum(nums);
+// console.log("Input:", nums);
+// console.log("Output:", output);
 //# sourceMappingURL=practis.js.map
