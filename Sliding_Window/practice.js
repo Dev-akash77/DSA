@@ -84,6 +84,32 @@ const minSubArrayLen = (target, nums) => {
   return res === Infinity ? 0 : res;
 };
 
+
 // console.log(minSubArrayLen(7, [2, 3, 1, 2, 4, 3])); // Output: 2  -> [4,3]
 // console.log(minSubArrayLen(4, [1, 4, 4])); // Output: 1  -> [4]
 // console.log(minSubArrayLen(11, [1, 1, 1, 1, 1, 1, 1])); // Output: 0  -> No valid subarray
+
+
+// ! --------------------- MAX CONSIXUTIVE SUM III --------------------------------------------------------------
+
+var longestOnes = function(nums, k) {
+    let i = 0;
+    let zero = 0;
+    let max = -Infinity;
+
+    for(let j=0; j < nums.length; j++){
+    //  count zero
+        if(nums[j]===0) zero++;
+
+        while(zero>k){
+            if(nums[i]===0) zero--;
+            i++;
+        };
+
+        max = Math.max(max,j-i+1);
+    }
+
+    return max;
+};
+
+// console.log(longestOnes([1,1,1,0,0,0,1,1,1,1,0],2); // Output: 6  
