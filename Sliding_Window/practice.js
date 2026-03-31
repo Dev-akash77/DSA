@@ -61,8 +61,8 @@ const maxSubArraySum = (nums, k) => {
   return max;
 };
 
-console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
-console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
+// console.log(maxSubArraySum([2, 1, 5, 1, 3, 2], 3)); // Output: 9
+// console.log(maxSubArraySum([2, 3, 4, 1, 5], 2)); // Output: 7
 
 // ! --------------------- Minimum Sum--------------------------------------------------------------
 
@@ -113,3 +113,31 @@ var longestOnes = function(nums, k) {
 };
 
 // console.log(longestOnes([1,1,1,0,0,0,1,1,1,1,0],2); // Output: 6  
+
+
+
+function findMaxAverage(nums, k) {
+   let max = -Infinity;
+   const n = nums.length;
+   let l = 0;
+   let sum = 0;
+
+   for (let i = 0; i < n; i++) {
+      sum += nums[i];
+
+      if (i-l+1===k) {
+        max = Math.max(sum,max);
+        sum -= nums[l];
+        l++;
+      }
+   }
+   return max/k;
+}
+
+
+// ! TEST
+let nums = [1, 12, -5, -6, 50, 3];
+let k = 4;
+
+// // Output print
+// console.log(findMaxAverage(nums, k));
