@@ -344,26 +344,82 @@ function findAnagrams(s, p) {
 
 
 
-function longestOnes(nums, k) {
-    let res =0;
-    let j = 0;
-    let count = 0;
 
-    for (let i = 0; i < nums.length; i++) {
-      if (nums[i]===0) count++;
 
-      while (count>k) {
-        if(nums[j]===0) count--;
-        j++;
+/** 
+ *! 6 | Count Occurrences of Anagrams
+ ** https://practice.geeksforgeeks.org/problems/count-occurences-of-anagrams5839/1
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Fixed Size) + Frequency Array
+ *
+ *? PATTERN:
+ *? Fixed-size sliding window
+ *? Window size = pattern length
+ *? Maintain 2 frequency arrays (pattern & window)
+ *? Compare arrays → match → count++
+ *
+ *! ALGO NAME:
+ *! Fixed Window Sliding Technique
+ *
+ *? TIME COMPLEXITY: O(n * 26)  ≈ O(n)
+ *? SPACE COMPLEXITY: O(1)   // 26 lowercase chars
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Microsoft
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5)
+ *
+ * --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input:  txt = "forxxorfxdofr", pat = "for"
+ ** Output: 3
+ *
+ *? --------------------------------------------------------------
+ */
+
+function search(pat, txt) {
+  const wn = pat.length;
+  const n = txt.length;
+
+  const wp = new Array(26).fill(0);
+  const wt = new Array(26).fill(0);
+
+  const a = 'a'.charCodeAt(0);
+  let l = 0;
+  let count = 0;
+
+  // pattern frequency
+  for (let i = 0; i < wn; i++) {
+    wp[pat.charCodeAt(i) - a]++;
+  }
+
+  for (let r = 0; r < n; r++) {
+    wt[txt.charCodeAt(r) - a]++;
+
+    if (r - l + 1 === wn) {
+
+      // compare both arrays
+      if (wp.join() === wt.join()) {
+        count++;
       }
-      res = Math.max(res, i - j + 1) ;
 
+      // slide window
+      wt[txt.charCodeAt(l) - a]--;
+      l++;
     }
-    console.log(res);
-    
-    return res;
-};
+  }
 
+  return count;
+}
 
-longestOnes([1,1,1,0,0,0,1,1,1,1,0], 2); // 6
-longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3); // 10
+//? TEST RUN
+
+// console.log(search("for", "forxxorfxdofr"));
+// Expected Output: 3
+
+// console.log(search("aaba", "aabaabaa"));
+// Expected Output: 4

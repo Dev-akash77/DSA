@@ -139,5 +139,5 @@ function findMaxAverage(nums, k) {
 let nums = [1, 12, -5, -6, 50, 3];
 let k = 4;
 
-// // Output print
+// Output print
 // console.log(findMaxAverage(nums, k));

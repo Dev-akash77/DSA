@@ -43,7 +43,7 @@
 **Link:**  
 - GFG: https://www.geeksforgeeks.org/count-occurrences-of-anagrams/
 
-**Status:** ❌
+**Status:** ✅
 
 ---
 
