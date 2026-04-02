@@ -289,7 +289,7 @@ Look for keywords:
 
 | Level | Completed |
 |------|-----------|
-| Easy | 2 / 5 |
+| Easy | 3 / 5 |
 | Medium | 3 / 10 |
 | Hard | 0 / 5 |
 
