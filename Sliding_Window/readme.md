@@ -104,7 +104,7 @@
 **Link:**  
 - LeetCode: https://leetcode.com/problems/longest-repeating-character-replacement/
 
-**Status:** ❌
+**Status:** ✅
 
 ---
 
@@ -290,7 +290,7 @@ Look for keywords:
 | Level | Completed |
 |------|-----------|
 | Easy | 3 / 5 |
-| Medium | 3 / 10 |
+| Medium | 4 / 10 |
 | Hard | 0 / 5 |
 
 ---

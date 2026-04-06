@@ -423,3 +423,89 @@ function search(pat, txt) {
 
 // console.log(search("aaba", "aabaabaa"));
 // Expected Output: 4
+
+
+
+/**
+ *! 7 | Longest Repeating Character Replacement
+ ** LeetCode: https://leetcode.com/problems/longest-repeating-character-replacement/
+ *
+ * --------------------------------------------------------------
+ *! TECHNIQUE:
+ *! Sliding Window (Variable Size) + Frequency Array
+ *
+ *? PATTERN:
+ *? Variable-size sliding window
+ *? Expand window → track most frequent character
+ *? If replacements needed > k → shrink from left
+ *
+ *! ALGO NAME:
+ *! Sliding Window + Frequency Count (Greedy)
+ *
+ *? TIME COMPLEXITY: O(n)
+ *? SPACE COMPLEXITY: O(1)   // 26 uppercase chars
+ *
+ *! ASKED IN:
+ *! Amazon, Google, Meta, Microsoft, Bloomberg, Adobe
+ *
+ *? IMPORTANCE (out of 5):
+ *? ⭐⭐⭐⭐⭐ (5/5) — Must-do advanced sliding window question
+ *
+ *? --------------------------------------------------------------
+ *! CORE CONDITION:
+ *
+ ** (window size - maxFreq) <= k
+ **
+ ** maxFreq = highest frequency of a single character in window
+ **
+ ** Meaning:
+ ** Number of replacements needed ≤ k
+ *
+ *? --------------------------------------------------------------
+ *! EXAMPLE:
+ *
+ ** Input:  s = "ABAB", k = 2
+ ** Output: 4
+ ** Explanation: Replace A → B or B → A
+ *
+ ** Input:  s = "AABABBA", k = 1
+ ** Output: 4
+ ** Explanation: "BBBB" is the longest valid substring
+ *
+ *? --------------------------------------------------------------
+ */
+
+function characterReplacement(s, k) {
+  const n = s.length;
+  let l = 0;
+  let maxFreq = 0;
+  let max = 0;
+
+  const freq = new Array(26).fill(0);
+  const A = 'A'.charCodeAt(0);
+
+  for (let r = 0; r < n; r++) {
+    const idx = s.charCodeAt(r) - A;
+    freq[idx]++;
+
+    // track most frequent char
+    maxFreq = Math.max(maxFreq, freq[idx]);
+
+    // shrink window if invalid
+    while ((r - l + 1) - maxFreq > k) {
+      freq[s.charCodeAt(l) - A]--;
+      l++;
+    }
+
+    // update answer
+    max = Math.max(max, r - l + 1);
+  }
+
+  return max;
+}
+
+// !--------------------------------------------------------------
+//? TEST RUN
+
+// console.log(characterReplacement("ABAB", 2));      // 4
+// console.log(characterReplacement("AABABBA", 1));  // 4
