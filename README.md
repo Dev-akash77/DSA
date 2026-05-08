@@ -202,7 +202,8 @@ This collection covers everything from "Hello World" to "System Architecture".
 100. **The Final Question:** "Do you have any questions for us?" *(Always ask about their Tech Stack).*
 
 ---
-
+[DSA RESOURCE](https://ds-algo-preparation-2026.vercel.app/)
+---
 ### Reality Check for Akash
 
 * **English:** Keep it simple. Don't use big words. Just be clear. "I built X using Y because Z."
