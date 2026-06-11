@@ -248,3 +248,45 @@
 // };
 
 // console.log(fourSumBrute([1, 0, -1, 0, -2, 2], 0)); //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
+
+
+//! Q6. Group Anagrams
+//? https://leetcode.com/problems/group-anagrams/
+//* Input: strs = ["eat","tea","tan","ate","nat","bat"]
+//* Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+//* Explanation: Group all strings that are anagrams of each other.
+
+//! Algorithm:
+//! 1. For each word, sort its characters to get a canonical key.
+//! 2. Use a HashMap where key = sorted string, value = list of anagrams.
+//! 3. Push each word into its matching group.
+//! 4. Return all map values.
+//! Time Complexity: O(n * k log k) — n words, k = max word length
+//! Space Complexity: O(n * k)
+//! Asked In: Amazon, Google, Microsoft, Meta, Adobe
+
+const st = (str: string) => str.split("").sort().join("");
+
+function groupAnagram(arr: string[]): string[][] {
+    const n = arr.length;
+    const map = new Map<string, string[]>();
+
+    for (let i = 0; i < n; i++) {
+        const key = st(arr[i]!);
+
+        if (map.has(key)) {
+            map.get(key)!.push(arr[i]!);
+        } else {
+            map.set(key, [arr[i]!]);
+        }
+    }
+
+    return [...map.values()];
+}
+
+console.log(groupAnagram(["eat", "tea", "tan", "ate", "nat", "bat"]));
+// Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
+
+
+

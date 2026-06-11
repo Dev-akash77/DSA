@@ -163,51 +163,75 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //   return ans
 // }
 // console.log(threeSumBrute([-1, 0, 1, 2, -1, -4])); //* Output: [[-1,-1,2],[-1,0,1]]
-//! Q5 4Sum
-// //? https://leetcode.com/problems/4sum/
-// //* Input: nums = [1,0,-1,0,-2,2], target = 0
-// //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
-// //* Explanation: All unique quadruplets that sum to target.
-// //! Key Observation:
-// //! - Find all unique quadruplets (i, j, k, l) such that nums[i] + nums[j] + nums[k] + nums[l] == target.
-// //! - Sorting + two-pointer technique makes it efficient (extension of 3Sum).
-// //! - Complexity: O(n³) (optimal for this problem).
-// //!
-// //! Asked In: Amazon, Google, Meta, Microsoft, Adobe, Netflix
-const fourSumBrute = (nums, target) => {
-    // !sort the entire array
-    nums = nums.sort((a, b) => a - b);
-    const n = nums.length;
-    const ans = [];
-    for (let i = 0; i < n - 1; i++) {
-        if (i > 0 && nums[i] === nums[i - 1])
-            continue;
-        for (let j = i + 1; j < n - 1; j++) {
-            if (j > 0 && nums[j] === nums[j - 1])
-                continue;
-            let k = j + 1;
-            let l = n - 1;
-            while (nums[k] < nums[l]) {
-                const sum = nums[i] + nums[j] + nums[k] + nums[l];
-                if (sum === target) {
-                    ans.push([nums[i], nums[j], nums[k], nums[l]]);
-                    while (nums[k] < nums[l] && nums[k] === nums[k - 1])
-                        k++;
-                    while (nums[k] < nums[l] && nums[l] === nums[l + 1])
-                        l--;
-                    k++;
-                    l--;
-                }
-                else if (sum > target) {
-                    l--;
-                }
-                else {
-                    k++;
-                }
-            }
+// //! Q5 4Sum
+// // //? https://leetcode.com/problems/4sum/
+// // //* Input: nums = [1,0,-1,0,-2,2], target = 0
+// // //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+// // //* Explanation: All unique quadruplets that sum to target.
+// // //! Key Observation:
+// // //! - Find all unique quadruplets (i, j, k, l) such that nums[i] + nums[j] + nums[k] + nums[l] == target.
+// // //! - Sorting + two-pointer technique makes it efficient (extension of 3Sum).
+// // //! - Complexity: O(n³) (optimal for this problem).
+// // //!
+// // //! Asked In: Amazon, Google, Meta, Microsoft, Adobe, Netflix
+// const fourSumBrute = (nums: number[], target: number): number[][] => {
+//   // !sort the entire array
+//   nums = nums.sort((a, b) => a - b);
+//   const n = nums.length;
+//   const ans: number[][] = [];
+//   for (let i = 0; i < n - 1; i++) {
+//     if (i > 0 && nums[i] === nums[i - 1]) continue;
+//     for (let j = i + 1; j < n - 1; j++) {
+//       if (j > 0 && nums[j] === nums[j - 1]) continue;
+//       let k = j + 1;
+//       let l = n - 1;
+//       while (nums[k]! < nums[l]!) {
+//         const sum: number = nums[i]! + nums[j]! + nums[k]! + nums[l]!;
+//         if (sum === target) {
+//           ans.push([nums[i]!, nums[j]!, nums[k]!, nums[l]!]);
+//           while (nums[k]! < nums[l]! && nums[k] === nums[k - 1]) k++;
+//           while (nums[k]! < nums[l]! && nums[l] === nums[l + 1]) l--;
+//           k++;
+//           l--;
+//         } else if (sum > target) {
+//           l--;
+//         } else {
+//           k++;
+//         }
+//       }
+//     }
+//   }
+//   return ans;
+// };
+// console.log(fourSumBrute([1, 0, -1, 0, -2, 2], 0)); //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+//! Q6. Group Anagrams
+//? https://leetcode.com/problems/group-anagrams/
+//* Input: strs = ["eat","tea","tan","ate","nat","bat"]
+//* Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+//* Explanation: Group all strings that are anagrams of each other.
+//! Algorithm:
+//! 1. For each word, sort its characters to get a canonical key.
+//! 2. Use a HashMap where key = sorted string, value = list of anagrams.
+//! 3. Push each word into its matching group.
+//! 4. Return all map values.
+//! Time Complexity: O(n * k log k) — n words, k = max word length
+//! Space Complexity: O(n * k)
+//! Asked In: Amazon, Google, Microsoft, Meta, Adobe
+const st = (str) => str.split("").sort().join("");
+function groupAnagram(arr) {
+    const n = arr.length;
+    const map = new Map();
+    for (let i = 0; i < n; i++) {
+        const key = st(arr[i]);
+        if (map.has(key)) {
+            map.get(key).push(arr[i]);
+        }
+        else {
+            map.set(key, [arr[i]]);
         }
     }
-    return ans;
-};
-console.log(fourSumBrute([1, 0, -1, 0, -2, 2], 0)); //* Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+    return [...map.values()];
+}
+console.log(groupAnagram(["eat", "tea", "tan", "ate", "nat", "bat"]));
+// Output: [["eat","tea","ate"],["tan","nat"],["bat"]]
 //# sourceMappingURL=medium.js.map
