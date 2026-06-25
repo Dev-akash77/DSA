@@ -552,7 +552,7 @@ const removeDuplicate = (nums: number[]): number => {
 
 
 
-//! Q13. Append Characters to String to Make Subsequence
+//! Q12. Append Characters to String to Make Subsequence
 //? https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/ 
 //* Input:
 //* s = "coaching", t = "coding"
@@ -614,3 +614,58 @@ console.log(appendCharacters("coaching", "coding")); // 4
 console.log(appendCharacters("abcde", "a"));        // 0
 console.log(appendCharacters("a", "a"));            // 0
 
+
+
+
+//! Q12. Missing Number and Repeated Value
+//? https://leetcode.com/problems/find-the-celebrity/
+
+//* Input:  nums = [4,3,6,2,1,1]
+//* Output: [1, 5]
+//* Meaning: 1 is repeated, 5 is missing from 1 to n.
+
+//! Intuition (Approach 1 - Set):
+//! Array mein numbers 1 se n tak hone chahiye.
+//! Use a Set to track jo numbers dekhe hain.
+//! Agar number pehle se Set mein hai → repeated mil gaya.
+//! Loop 1 to n → jo Set mein nahi hai vo missing hai.
+
+//! Algorithm (Set Approach):
+//! 1. Initialize set = new Set(), repeating = -1
+//! 2. Traverse array:
+//!       - If nums[i] already in set → repeating found
+//!       - Else add to set
+//! 3. Loop 1 to n:
+//!       - If number not in set → missing found
+//! 4. Return [repeating, missing]
+
+//! Time Complexity: O(n)
+//! Space Complexity: O(n)
+
+const findMissingAndRepeatedValuesSet = (nums: number[]): number[] => {
+  const n = nums.length;
+  const set = new Set<number>();
+  let repeating = -1;
+
+  for (let i = 0; i < n; i++) {
+    if (set.has(nums[i]!)) {
+      repeating = nums[i]!;
+    } else {
+      set.add(nums[i]!);
+    }
+  }
+
+  for (let i = 1; i <= n; i++) {
+    if (!set.has(i)) {
+      return [repeating, i];
+    }
+  }
+
+  return [repeating, -1];
+};
+
+// ?------test case------------------------------------------
+// console.log(findMissingAndRepeatedValuesSet([4, 3, 6, 2, 1, 1])); // [1, 5]
+// console.log(findMissingAndRepeatedValues([4, 3, 6, 2, 1, 1])); // [1, 5]
+// console.log(findMissingAndRepeatedValues([1, 1])); // [1, 2]
+// console.log(findMissingAndRepeatedValues([2, 2])); // [2, 1]
