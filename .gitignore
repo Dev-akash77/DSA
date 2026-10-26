@@ -1,0 +1,6 @@
+# TypeScript build output
+**/dist/
+TS/problem2.js
+TS/problem2.d.ts
+TS/problem2.js.map
+TS/problem2.d.ts.map
