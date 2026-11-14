@@ -3,12 +3,12 @@
  * @return {void} Do not return anything, modify s in-place instead.
  */
 
-var reverseString = function(s) {
+var reverseString = function (s) {
     let i = 0;
-    let j = s.length-1;
+    let j = s.length - 1;
 
-    while(j>i){
-        [s[i],s[j]] = [s[j],s[i]]; 
+    while (j > i) {
+        [s[i], s[j]] = [s[j], s[i]];
         i++;
         j--;
     }
@@ -16,4 +16,9 @@ var reverseString = function(s) {
     return s;
 };
 
-console.log(reverseString(['h','e','l','l','o']));
+console.log(reverseString(['h', 'e', 'l', 'l', 'o']));
+
+
+
+
+
