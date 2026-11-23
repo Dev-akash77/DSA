@@ -18,7 +18,5 @@ var appendCharacters = function(s, t) {
 };
 
 
-
-
 let s = "coaching", t = "coding";
 console.log(appendCharacters(s,t));
