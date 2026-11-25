@@ -1,4 +1,4 @@
-class Node<T> {
+ class Node<T> {
   data: T;
   next: Node<T> | null;
 
@@ -162,7 +162,6 @@ class Node<T> {
     return true;
 
   }
-
 
 }
 
